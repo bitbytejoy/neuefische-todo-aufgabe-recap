@@ -9,8 +9,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TodoService {
     private final TodoRepository todoRepository;
+    private int id = 0;
 
     public Todo create(Todo todo) {
+        todo.setId(String.valueOf(this.getNextId()));
         return todoRepository.save(todo);
     }
 
@@ -24,5 +26,9 @@ public class TodoService {
 
     public void deleteById(String id) {
         todoRepository.deleteById(id);
+    }
+
+    private int getNextId() {
+        return ++id;
     }
 }

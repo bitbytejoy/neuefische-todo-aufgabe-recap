@@ -14,7 +14,7 @@ class TodoServiceTest {
         // given
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
-        Todo todo = new Todo("1", "My first todo", Status.OPEN);
+        Todo todo = new Todo(null, "My first todo", Status.OPEN);
 
         // when
         Todo actual = todoService.create(todo);
@@ -30,11 +30,11 @@ class TodoServiceTest {
     }
 
     @Test
-    void update_whenTodo_thenSuccessfullyUpdateTodo () {
+    void update_whenTodoExists_thenSuccessfullyUpdateTodo() {
         // given
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
-        Todo todo = new Todo("1","My first todo", Status.OPEN);
+        Todo todo = new Todo(null,"My first todo", Status.OPEN);
         todoService.create(todo);
         Todo update = new Todo(
             "1",
@@ -80,9 +80,9 @@ class TodoServiceTest {
         // given
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
-        Todo todo = new Todo("1", "Hello Neuefische", Status.DONE);
+        Todo todo = new Todo(null, "Hello Neuefische", Status.DONE);
         Todo todo2 = new Todo(
-            "2",
+            null,
             "Was geht Neuefische",
             Status.IN_PROGRESS
         );
@@ -131,7 +131,7 @@ class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
         todoService.create(
-            new Todo("1", "Hello world", Status.OPEN)
+            new Todo(null, "Hello world", Status.OPEN)
         );
 
         // when
@@ -151,10 +151,10 @@ class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
         todoService.create(
-                new Todo("1", "Hello world", Status.OPEN)
+                new Todo(null, "Hello world", Status.OPEN)
         );
         todoService.create(
-                new Todo("2", "Lorem Ipsum", Status.IN_PROGRESS)
+                new Todo(null, "Lorem Ipsum", Status.IN_PROGRESS)
         );
 
 
@@ -193,10 +193,10 @@ class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
         todoService.create(
-                new Todo("1", "Hello world", Status.OPEN)
+                new Todo(null, "Hello world", Status.OPEN)
         );
         todoService.create(
-                new Todo("2", "Lorem Ipsum", Status.IN_PROGRESS)
+                new Todo(null, "Lorem Ipsum", Status.IN_PROGRESS)
         );
 
         // when
