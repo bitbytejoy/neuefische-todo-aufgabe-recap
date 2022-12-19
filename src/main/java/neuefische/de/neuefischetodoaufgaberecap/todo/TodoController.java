@@ -1,4 +1,4 @@
-package neuefische.de.neuefischetodoaufgaberecap;
+package neuefische.de.neuefischetodoaufgaberecap.todo;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

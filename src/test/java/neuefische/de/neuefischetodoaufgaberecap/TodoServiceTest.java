@@ -1,5 +1,9 @@
 package neuefische.de.neuefischetodoaufgaberecap;
 
+import neuefische.de.neuefischetodoaufgaberecap.todo.Todo;
+import neuefische.de.neuefischetodoaufgaberecap.todo.TodoStatus;
+import neuefische.de.neuefischetodoaufgaberecap.todo.TodoRepository;
+import neuefische.de.neuefischetodoaufgaberecap.todo.TodoService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -14,7 +18,7 @@ class TodoServiceTest {
         // given
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
-        Todo todo = new Todo(null, "My first todo", Status.OPEN);
+        Todo todo = new Todo(null, "My first todo", TodoStatus.OPEN);
 
         // when
         Todo actual = todoService.create(todo);
@@ -23,7 +27,7 @@ class TodoServiceTest {
         Todo expected = new Todo(
             "1",
             "My first todo",
-            Status.OPEN
+            TodoStatus.OPEN
         );
 
         Assertions.assertEquals(expected, actual);
@@ -34,12 +38,12 @@ class TodoServiceTest {
         // given
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
-        Todo todo = new Todo(null,"My first todo", Status.OPEN);
+        Todo todo = new Todo(null,"My first todo", TodoStatus.OPEN);
         todoService.create(todo);
         Todo update = new Todo(
             "1",
             "My first todo updated",
-            Status.IN_PROGRESS
+            TodoStatus.IN_PROGRESS
         );
 
         // when
@@ -49,7 +53,7 @@ class TodoServiceTest {
         Todo expected = new Todo(
             "1",
             "My first todo updated",
-            Status.IN_PROGRESS
+            TodoStatus.IN_PROGRESS
         );
 
         Assertions.assertEquals(expected, actual);
@@ -60,7 +64,7 @@ class TodoServiceTest {
         // given
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
-        Todo todo = new Todo("1", "Hello Neuefische", Status.DONE);
+        Todo todo = new Todo("1", "Hello Neuefische", TodoStatus.DONE);
 
         // when
         Todo actual = todoService.update(todo);
@@ -69,7 +73,7 @@ class TodoServiceTest {
         Todo expected = new Todo(
             "1",
             "Hello Neuefische",
-            Status.DONE
+            TodoStatus.DONE
         );
 
         Assertions.assertEquals(expected, actual);
@@ -80,16 +84,16 @@ class TodoServiceTest {
         // given
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
-        Todo todo = new Todo(null, "Hello Neuefische", Status.DONE);
+        Todo todo = new Todo(null, "Hello Neuefische", TodoStatus.DONE);
         Todo todo2 = new Todo(
             null,
             "Was geht Neuefische",
-            Status.IN_PROGRESS
+            TodoStatus.IN_PROGRESS
         );
         todoService.create(todo);
         todoService.create(todo2);
 
-        Todo update = new Todo("1", "Updated", Status.OPEN);
+        Todo update = new Todo("1", "Updated", TodoStatus.OPEN);
 
         // when
         todoService.update(update);
@@ -98,11 +102,11 @@ class TodoServiceTest {
         List<Todo> actual = todoService.getAll();
         List<Todo> expected = new ArrayList<>(
             List.of(
-                new Todo("1", "Updated", Status.OPEN),
+                new Todo("1", "Updated", TodoStatus.OPEN),
                 new Todo(
                     "2",
                     "Was geht Neuefische",
-                    Status.IN_PROGRESS
+                    TodoStatus.IN_PROGRESS
                 )
             )
         );
@@ -131,7 +135,7 @@ class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
         todoService.create(
-            new Todo(null, "Hello world", Status.OPEN)
+            new Todo(null, "Hello world", TodoStatus.OPEN)
         );
 
         // when
@@ -139,7 +143,7 @@ class TodoServiceTest {
 
         // then
         List<Todo> expected = new ArrayList<>(
-            List.of(new Todo("1", "Hello world", Status.OPEN))
+            List.of(new Todo("1", "Hello world", TodoStatus.OPEN))
         );
 
         Assertions.assertEquals(expected, actual);
@@ -151,10 +155,10 @@ class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
         todoService.create(
-                new Todo(null, "Hello world", Status.OPEN)
+                new Todo(null, "Hello world", TodoStatus.OPEN)
         );
         todoService.create(
-                new Todo(null, "Lorem Ipsum", Status.IN_PROGRESS)
+                new Todo(null, "Lorem Ipsum", TodoStatus.IN_PROGRESS)
         );
 
 
@@ -164,8 +168,8 @@ class TodoServiceTest {
         // then
         List<Todo> expected = new ArrayList<>(
             List.of(
-                new Todo("1", "Hello world", Status.OPEN),
-                new Todo("2", "Lorem Ipsum", Status.IN_PROGRESS)
+                new Todo("1", "Hello world", TodoStatus.OPEN),
+                new Todo("2", "Lorem Ipsum", TodoStatus.IN_PROGRESS)
             )
          );
 
@@ -193,10 +197,10 @@ class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
         todoService.create(
-                new Todo(null, "Hello world", Status.OPEN)
+                new Todo(null, "Hello world", TodoStatus.OPEN)
         );
         todoService.create(
-                new Todo(null, "Lorem Ipsum", Status.IN_PROGRESS)
+                new Todo(null, "Lorem Ipsum", TodoStatus.IN_PROGRESS)
         );
 
         // when
@@ -206,7 +210,7 @@ class TodoServiceTest {
         List<Todo> actual = todoService.getAll();
         List<Todo> expected = new ArrayList<>(
             List.of(
-                new Todo("2", "Lorem Ipsum", Status.IN_PROGRESS)
+                new Todo("2", "Lorem Ipsum", TodoStatus.IN_PROGRESS)
             )
         );
 

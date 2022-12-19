@@ -1,4 +1,4 @@
-package neuefische.de.neuefischetodoaufgaberecap;
+package neuefische.de.neuefischetodoaufgaberecap.todo;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
